@@ -28,18 +28,24 @@ public class Main {
         }
 
         inputArr = br.readLine().split(" ");
-        travel = new int[m];
-        for (int i = 0; i < m; i++) {
-            travel[i] = Integer.parseInt(inputArr[i]);
+        Set<Integer> trav = new HashSet<>();
+        //travel = new int[m];
+        for(int i=0;i<m;i++){
+            //travel[i] = Integer.parseInt(inputArr[i]);
+            trav.add(Integer.parseInt(inputArr[i]));
         }
 
+        int result = 0;
         boolean possible = true;
-        int root = find(travel[0]);
-        for (int i = 1; i < m; i++) {
-            if (find(travel[i]) != root) {
-                possible = false;
-                break;
+        int cnt = 0;
+        for(int i : trav){
+            if(cnt == 0){
+                result = find(i);
             }
+            if(find(i) != result){
+                possible = false;
+            }
+            cnt++;
         }
 
         if(possible){
