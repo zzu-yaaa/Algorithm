@@ -21,6 +21,9 @@ public class Main {
         for(int i=n1;i<len;i++){
             arr[i] = 1;
         }
+        
+        //교차가 다 끝났을 때 불필요한 반복을 줄이기 위함
+        t = Math.min(t, n1+n2-1);
 
         while(t > 0){
             for(int i=0;i<len-1;i++){
