@@ -6,23 +6,16 @@ public class Main {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         int n = Integer.parseInt(br.readLine());
-        int n1 = n/10;
-        int n2 = n%10;
+        int cur = n;
+        int cnt = 0;
 
-        int a = n1;
-        int b = n2;
-        int cnt = 1;
-
-        int temp = b*10 + (a+b) % 10;
-        a = b;
-        b = temp % 10;
-
-        while(!(a==n1 && b==n2)){
-            temp = b*10 + (a+b) % 10;
-            a = b;
-            b = temp % 10;
+        do{
+            int a = cur/10;
+            int b = cur%10;
+            cur = b*10 + (a+b)%10;
             cnt += 1;
-        }
+        } while(n != cur);
+
 
         bw.write(String.valueOf(cnt));
         bw.flush();
