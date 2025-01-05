@@ -9,22 +9,22 @@ public class Main {
         String str = br.readLine();
         str = str.toUpperCase();
 
-        Map<Character,Integer> m = new HashMap<>();
+        int[] alphabet = new int[26];
 
-        for(int i=0; i<str.length(); i++){
-            m.put(str.charAt(i), m.getOrDefault(str.charAt(i), 0) + 1);
+        for(int i=0;i<str.length();i++){
+            alphabet[str.charAt(i)-'A'] += 1;
         }
 
         int max = -1;
-        Character answer = null;
-        for(Character c : m.keySet()){
-            if(m.get(c) >= max){
-                if(m.get(c)==max){
+        char answer = '?';
+        for(int i=0;i<26;i++){
+            if(alphabet[i] >= max){
+                if(alphabet[i] == max){
                     answer = '?';
                 }
                 else{
-                    max = m.get(c);
-                    answer = c;
+                    max = alphabet[i];
+                    answer = (char) ('A'+i);
                 }
             }
         }
