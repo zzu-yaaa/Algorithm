@@ -18,6 +18,7 @@ class Solution {
         }
         
         for(int i=0; i<5; i++){
+            if (answer > 0) return;
             cnt += 1;
             func(str+alphabet[i], word);
         }
