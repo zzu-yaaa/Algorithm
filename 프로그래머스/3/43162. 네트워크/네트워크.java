@@ -2,22 +2,13 @@ import java.util.*;
 
 class Solution {
     public int solution(int n, int[][] computers) {
-        Set<Integer> used = new HashSet<>();
-        for(int i=0; i<n; i++){
-            used.add(i);
-        }
         
         int answer = 0;
+        
+        int[] vis = new int[n+1];
         for(int i=0; i<n; i++){
-            if(used.contains(i)){
-                int[] vis = new int[n];
+            if(vis[i] == 0){
                 dfs(i, vis, n, computers);
-                for(int j=0; j<n; j++){
-                    if(vis[j] == 1){
-                        used.remove(j);
-                    }
-                }
-
                 answer += 1;
             }
         }
