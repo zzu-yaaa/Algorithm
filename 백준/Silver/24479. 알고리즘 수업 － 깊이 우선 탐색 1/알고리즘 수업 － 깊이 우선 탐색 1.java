@@ -3,6 +3,9 @@ import java.util.*;
 
 public class Main {
     public static int cnt = 1;
+    public static ArrayList<ArrayList<Integer>> graph;
+    public static int[] vis;
+
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -12,8 +15,8 @@ public class Main {
         int m = Integer.parseInt(in[1]);
         int r = Integer.parseInt(in[2]);
 
-        ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
-        int[] vis = new int[n+1];
+        graph = new ArrayList<>();
+        vis = new int[n+1];
         for(int i=0; i<n+1; i++){
             graph.add(new ArrayList<>());
         }
@@ -31,7 +34,7 @@ public class Main {
         }
 
         vis[r] = 1;
-        dfs(graph, vis, r);
+        dfs(r);
 
         for(int i=1; i<n+1; i++){
             bw.write(vis[i]+"\n");
@@ -40,13 +43,13 @@ public class Main {
         bw.flush();
     }
 
-    public static void dfs(ArrayList<ArrayList<Integer>> graph, int[] vis, int node){
+    public static void dfs(int node){
         for(int i=0; i<graph.get(node).size();i++){
             int cur = graph.get(node).get(i);
             if(vis[cur] == 0){
                 cnt += 1;
                 vis[cur] = cnt;
-                dfs(graph, vis, cur);
+                dfs(cur);
             }
         }
     }
